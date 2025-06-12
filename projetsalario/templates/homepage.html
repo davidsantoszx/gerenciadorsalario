@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gerencie seu salário, despesas e metas de forma prática e segura.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cards.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/grafico.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <title>Gerenciador de Salário</title>
+</head>
+<body>
+   {% include "navbar.html" %}
+
+    <!--REACT - CARDS----PAINEL DE PLANOS-----GRAFICOS--->
+   <div id="root"></div>  
+   
+
+
+   <!-- Chart.js -->
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+   <!-- React e Babel via CDN -->
+   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+ 
+  
+
+
+   <script type="text/babel" src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <!---------------------------------------------------------------------------------------->
+
+
+
+    <script type="text/babel" src="{{ url_for('static', filename='js/planos.js') }}"></script>
+
+
+
+    <script type="text/babel" src="{{ url_for('static', filename='js/grafico.js') }}"></script>
+    
+
+
+    <script src="/static/js/notifica.js"></script>
+
+
+
+
+
+
+
+<!--RODAPÉ-->
+<footer style="
+  background-color: #1e1e2f;
+  color: #ffeaa7;
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
+  padding: 1rem 1.5rem;        /* Menos padding vertical para rodapé mais fino */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #ddd;
+
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
+  flex-wrap: nowrap;             /* Evitar quebra dos textos */
+  font-size: 0.65rem;            /* Texto menor para laterais */
+  min-height: 40px;              /* Altura menor */
+  white-space: nowrap;           /* Evita quebra no texto esquerdo */
+">
+  <div style="flex: 1; min-width: 150px; text-align: left; font-size: 0.75rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+    © 2025 davidsantoszx. 
+  </div>
+  
+  <div style="flex: 2; text-align: center; min-width: 250px; font-size: 0.9rem; white-space: normal;">
+    💡 Organização financeira é liberdade! Controle seu salário com inteligência.
+  </div>
+  
+  <div style="flex: 1; min-width: 150px; text-align: right; display: flex; justify-content: flex-end; gap: 1rem; align-items: center; font-size: 0.85rem;">
+    <a href="https://www.linkedin.com/in/davidsantoszx" target="_blank" rel="noopener noreferrer" style="
+      color: #00b5e2;
+      text-decoration: none;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      transition: color 0.3s ease;
+    " aria-label="LinkedIn" id="linkedin-link">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#ffeaa7" viewBox="0 0 24 24" >
+        <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.12 24h4.77V7.77H.12V24zM8.29 7.77v16.23h4.77v-8.94c0-4.93 6.54-5.32 6.54 0v8.94h4.77v-10.58c0-7.37-8.38-7.11-11.31-3.49v-2.16H8.29z"/>
+      </svg>
+    </a>
+    <a href="mailto:david.flameng0187@gmail.com" style="
+      color: #ffeaa7;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      transition: color 0.3s ease;
+    " aria-label="Email" id="email-link">
+     david.flameng0187@gmail.com
+    </a>
+  </div>
+</footer>
+
+<style>
+  #linkedin-link svg {
+    transition: fill 0.3s ease;
+  }
+  #linkedin-link:hover svg {
+    fill: #0077b5;
+    cursor: pointer;
+  }
+  #email-link:hover {
+    color: #0077b5;
+    cursor: pointer;
+  }
+
+</style>
+
+
+
+</body>
+</html>

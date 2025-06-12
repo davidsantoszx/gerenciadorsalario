@@ -1,0 +1,164 @@
+/* CSS PLANOS */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#root {
+  flex-grow: 1; 
+  box-sizing: border-box;
+}
+
+
+footer {
+  height: 60px; 
+}
+
+
+
+
+
+
+
+#painel-root {
+  position: relative;
+  padding-top: 8rem;
+  z-index: 1;
+}
+
+.plano-form input {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #2b2b3d;
+  border: none;
+  border-radius: 8px;
+  color: white;
+}
+
+.plano-form button {
+  background-color: #ffc107; 
+  margin-right: 10px;
+  padding: 10px 15px;
+  border: none;
+  color: #1e1e2f;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: transform 0.2s;
+}
+
+.plano-form button:hover {
+  transform: scale(1.05);
+}
+
+.lista-planos {
+  margin-top: 20px;
+}
+
+.plano-card {
+  border: 2px solid transparent;
+  background-color: #2b2b3d;
+  border-radius: 10px;
+  padding: 15px;
+  
+}
+
+
+
+.plano-card h3 {
+  margin-top: 0;
+  font-size: 1.4rem;
+}
+
+.plano-card .acoes {
+  margin-top: 10px;
+}
+
+.plano-card .acoes button {
+  margin-right: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: none;
+  color: #1e1e2f;
+  background-color: #ffc107;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.plano-card .acoes button:hover {
+  background-color: #e0ac00;
+}
+
+.linha {
+  color: #ffeaa7 !important;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.linha > div {
+  flex: 1;
+}
+
+
+/*Painel de Criação*/
+.plano {        
+  background: #1f1f1f; 
+  padding: 16px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  box-shadow: 0 0 12px #ffeaa7;
+
+}
+
+
+
+
+
+
+
+/* NOTIFICAÇÕES */
+
+.notificacao {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 16px;
+  margin-top: 10px;
+  background-color: #333;
+  color: white;
+  border-radius: 6px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease;
+  z-index: 9999;
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.notificacao.visivel {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.notificacao.sucesso {
+  background-color: #28a745;
+}
+
+.notificacao.erro {
+  background-color: #dc3545;
+}
+
+.notificacao.info {
+  background-color: #17a2b8;
+}

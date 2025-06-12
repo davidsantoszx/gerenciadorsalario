@@ -1,0 +1,111 @@
+/* Fundo da página */
+body {
+  background: #1e1e2f no-repeat center center fixed;
+  background-size: cover;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Painel central */
+.auth-panel {
+  background: rgba(30, 30, 47, 0.95);
+  padding: 40px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  color: #fff;
+}
+
+/* Títulos */
+.auth-panel h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 1.8em;
+  color: #ffc107;
+}
+
+.auth-panel p {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #cccccc;
+}
+
+
+/* Formulário */
+
+
+
+
+.auth-panel input.form-control {
+  width: 350px;
+  background: #2c2c3e;
+  color: #fff;
+  border: 1px solid #444;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  padding: 12px;
+  font-size: 1em;
+  transition: border 0.3s;
+}
+
+.auth-panel input.form-control:focus {
+  border-color: #ffc107;
+  outline: none;
+}
+
+.auth-panel input.form-control::placeholder {
+  color: #bbbbbb;
+}
+
+/* Botões */
+.auth-panel button.btn {
+  width: 100%;
+  padding: 12px;
+  background: #ffc107;
+  color: #1e1e2f;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.auth-panel button.btn:hover {
+  background: #f7d778;
+}
+
+/* Link de cadastro/login */
+.auth-panel .link {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.auth-panel .link a {
+  color: #ffc107;
+  text-decoration: none;
+}
+
+.auth-panel .link a:hover {
+  text-decoration: underline;
+}
+
+
+
+.position-relative {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 40%;
+  right: 35px; 
+  transform: translateY(-50%);
+  color: #bbbbbb;
+}

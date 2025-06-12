@@ -1,0 +1,41 @@
+/* Navbar geral */
+.custom-navbar {
+  background-color: #1e1e2f;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Título */
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+/* Botões de login/cadastro */
+.nav-link {
+  color: #cdd4ff;
+  margin-left: 10px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #ffffff;
+}
+
+/* Botão "sair" */
+.btn-sair {
+  color: #ff6b6b;
+}
+
+.btn-sair:hover {
+  color: #ffffff;
+}
+
+
+/* Título centralizado na navbar */
+.navbar .navbar-brand {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}

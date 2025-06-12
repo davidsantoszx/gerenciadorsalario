@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cadastro.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <title>Faça seu Login</title>
+</head>
+<body> 
+
+
+
+{% block content %}
+<div class="auth-panel">
+  <h2>Login</h2>
+
+ {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div data-flash data-category="{{ category }}" data-message="{{ message }}"></div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+
+  <form method="POST" action="{{ url_for('login') }}">
+    <input type="email" class="form-control" name="email" placeholder="Seu e-mail" required>
+    <div class="position-relative">
+  <input type="password" class="form-control" name="senha" placeholder="Sua senha" required id="login-senha">
+  <i class="fa-solid fa-eye toggle-password" style="cursor: pointer;" data-target="login-senha"></i>
+</div>
+
+
+    <button type="submit" class="btn">Entrar</button>
+  </form>
+  
+  <div class="link">
+    Não tem conta? <a href="{{ url_for('cadastro') }}">Cadastre-se</a>
+  </div>
+</div>
+{% endblock %}
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  document.querySelectorAll('.toggle-password').forEach(function(toggle) {
+    toggle.addEventListener('click', function() {
+      const targetId = this.getAttribute('data-target');
+      const input = document.getElementById(targetId);
+      if (input.type === "password") {
+        input.type = "text";
+        this.classList.remove('fa-eye');
+        this.classList.add('fa-eye-slash');
+      } else {
+        input.type = "password";
+        this.classList.remove('fa-eye-slash');
+        this.classList.add('fa-eye');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
