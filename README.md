@@ -1,0 +1,51 @@
+# 💼 Gerenciador de Salário
+
+Este é um projeto simples e funcional de **gerenciador de salário**, desenvolvido com foco em organização financeira pessoal. O sistema permite criar planos salariais personalizados com receitas, despesas e metas, exibir gráficos, e visualizar informações de maneira clara e prática.
+
+---
+
+## 📷 Imagens do Projeto
+
+### 🔐 Telas de autenticação:
+- Login  
+  ![Login](images/telalogin.JPG)
+- Cadastro  
+  ![Cadastro](images/telacadastro.JPG)
+
+### 🏠 Visão geral:
+- Página inicial não logada  
+  ![Página de visão 1](images/paginavisão.JPG)  
+  ![Página de visão 2](images/paginavisao2.JPG)
+
+### ✅ Painel do usuário logado:
+- Página principal após login  
+  ![Página logado](images/paginalogado.JPG)
+- Gráfico do plano principal  
+  ![Gráfico](images/graficologado.JPG)
+- Painel de planos salariais  
+  ![Painel de Planos](images/PAINELPLANOS.JPG)
+- Painel de criação de planos  
+  ![Criação de Planos](images/PAINELDECRIACAO.JPG)
+
+---
+
+## ⚙️ Funcionalidades
+
+- Cadastro e login de usuários.
+- Criação de planos salariais com receitas, despesas e metas.
+- Definição de plano principal.
+- Sincronização de dados com os cards principais.
+- Visualização de gráfico em pizza dos dados do plano.
+- Interface responsiva com painel e navegação clara.
+
+---
+
+## 🚀 Como executar localmente
+
+> Pré-requisitos: Python 3.10+, pip, Git
+
+1. Clone este repositório:
+
+```bash
+git clone https://github.com/davidsantoszx/gerenciadorsalario.git
+cd gerenciadorsalario
