@@ -7,10 +7,10 @@ Este é um projeto simples e funcional de **gerenciador de salário**, desenvolv
 ## 📷 Imagens do Projeto
 
 ### 🔐 Telas de autenticação:
-- Login  
-  ![Login](images/telalogin.JPG)
 - Cadastro  
   ![Cadastro](images/telacadastro.JPG)
+- Login  
+  ![Login](images/telalogin.JPG)
 
 ### 🏠 Visão geral:
 - Página inicial não logada  
