@@ -1,6 +1,6 @@
 # 💼 Gerenciador de Salário
 
-Este é um projeto simples e funcional de **gerenciador de salário**, desenvolvido com foco em organização financeira pessoal. O sistema permite criar planos salariais personalizados com receitas, despesas e metas, exibir gráficos, e visualizar informações de maneira clara e prática.
+Este é um projeto simples e funcional de **gerenciador de salário**, desenvolvido com foco em organização financeira pessoal com Flask, React e SQLAlchemy.. O sistema permite criar planos salariais personalizados com receitas, despesas e metas, exibir gráficos, e visualizar informações de maneira clara e prática.
 
 ---
 
