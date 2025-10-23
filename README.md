@@ -14,7 +14,7 @@ Este é um projeto simples e funcional de **gerenciador de salário**, desenvolv
 
 ### 🏠 Visão geral:
 - Página inicial não logada  
-  ![Página de visão 1](images/paginavisão.JPG)  
+  ![Página de visão 1](images/paginavisao.JPG)  
   ![Página de visão 2](images/paginavisao2.JPG)
 
 ### ✅ Painel do usuário logado:
