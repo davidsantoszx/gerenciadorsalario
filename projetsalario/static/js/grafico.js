@@ -54,9 +54,9 @@ function GraficoTotais({ planos }) {
         responsive: true,
         plugins: {
           legend: {
-            position: 'bottom',
-            labels: {
-              color: '#1e1e2f',
+          position: 'bottom',
+          labels: {
+            color: '#f1f3f5',
               font: {
                 size: 14,
                 family: 'Segoe UI, Roboto, sans-serif',
@@ -69,7 +69,7 @@ function GraficoTotais({ planos }) {
             text: planoPrincipal
               ? 'Distribuição do Plano Principal'
               : 'Exemplo de Gráfico - Crie e defina um plano como principal',
-            color: '#1e1e2f',
+            color: '#f1f3f5',
             font: {
               size: 18,
               family: 'Segoe UI, Roboto, sans-serif',
