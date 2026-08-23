@@ -42,42 +42,107 @@ function GraficoTotais({ planos }) {
       data: {
         labels: ['Receitas', 'Despesas', 'Metas'],
         datasets: [{
-          data: [dados.receitaTotal, dados.despesaTotal, dados.metaTotal],
+          data: [
+            dados.receitaTotal,
+            dados.despesaTotal,
+            dados.metaTotal
+          ],
+
           backgroundColor: [
-            'rgba(39, 209, 5, 0.8)',     
-            'rgba(255, 0, 0, 0.77)',      
-            'rgba(38, 51, 124, 0.95)'      
-          ]
+            'rgba(39, 209, 5, 0.8)',
+            'rgba(255, 0, 0, 0.77)',
+            'rgba(106, 90, 205, 0.85)'
+          ],
+
+          borderColor: '#25263a',
+          borderWidth: 3,
+
+          hoverOffset: 14,
+
+          hoverBorderWidth: 3
         }]
       },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-          position: 'bottom',
-          labels: {
-            color: '#f1f3f5',
-              font: {
-                size: 14,
-                family: 'Segoe UI, Roboto, sans-serif',
-                weight: 'bold'
-              }
-            }
-          },
-          title: {
-            display: true,
-            text: planoPrincipal
-              ? 'Distribuição do Plano Principal'
-              : 'Exemplo de Gráfico - Crie e defina um plano como principal',
-            color: '#f1f3f5',
-            font: {
-              size: 18,
-              family: 'Segoe UI, Roboto, sans-serif',
-              weight: 'bold'
-            }
-          }
+options: {
+  responsive: true,
+
+  animation: {
+    duration: 900,
+    easing: 'easeOutQuart'
+  },
+
+  hover: {
+    mode: 'nearest',
+    animationDuration: 300
+  },
+
+  interaction: {
+    mode: 'nearest',
+    intersect: true
+  },
+
+  plugins: {
+    legend: {
+      position: 'bottom',
+      labels: {
+        color: '#f1f3f5',
+        padding: 18,
+        usePointStyle: true,
+        pointStyle: 'circle',
+        font: {
+          size: 14,
+          family: 'Segoe UI, Roboto, sans-serif',
+          weight: '600'
         }
       }
+    },
+
+    title: {
+      display: true,
+      text: planoPrincipal
+        ? 'Distribuição do Plano Principal'
+        : 'Exemplo de Gráfico - Crie e defina um plano como principal',
+
+      color: '#f1f3f5',
+
+      font: {
+        size: 18,
+        family: 'Segoe UI, Roboto, sans-serif',
+        weight: 'bold'
+      },
+
+      padding: {
+        bottom: 20
+      }
+    },
+
+    tooltip: {
+      backgroundColor: '#25263a',
+      titleColor: '#ffc107',
+      bodyColor: '#f1f3f5',
+      borderColor: '#ffc107',
+      borderWidth: 1,
+      padding: 12,
+      displayColors: true,
+
+      titleFont: {
+        size: 14,
+        weight: 'bold'
+      },
+
+      bodyFont: {
+        size: 13
+      },
+
+      callbacks: {
+        label: function(context) {
+          const valor = Number(context.raw) || 0;
+
+          return ` ${context.label}: R$ ${valor.toFixed(2)}`;
+        }
+      }
+    }
+  }
+}
     });
 
 

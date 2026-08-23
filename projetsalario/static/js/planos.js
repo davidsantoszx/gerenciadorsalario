@@ -172,473 +172,583 @@ function PainelPlanos({ atualizarTotais, atualizarPlanos }) {
   }
 
   return (
-    <div
-      id="painel-planos"
-      style={{
-        backgroundColor: "#1e1e2f",
-        padding: "20px",
-        marginTop: "2rem",
-        minHeight: "350px",
-      }}
-    >
-      {notificacao && (
-        <div
-          style={{
-            position: "fixed",
-            top: "20px",
-            right: "20px",
-            padding: "20px 20px",
-            borderRadius: "8px",
-            backgroundColor:
-              notificacao.status === "sucesso" ? "#28a745" : "#dc3545",
-            color: "#fff",
-            boxShadow: "0 2px 6px rgba(0,0,0,0.3)",
-            zIndex: 1000,
-          }}
-        >
-          {notificacao.mensagem}
-        </div>
-      )}
+  <div
+  id="painel-planos"
+  style={{
+    backgroundColor: '#1e1e2f',
+    minHeight: '350px'
+  }}
+>
 
-      <h2 style={{ color: "#ffc107" }}>Meus Planos Salariais</h2>
-      <p style={{ color: "#ffeaa7" }}>
-        Acompanhe seus ganhos, gastos e metas mês a mês.
-      </p>
-
-      {/* LISTA DE PLANOS */}
-      <div className="lista-planos">
-        {planos.length === 0 ? (
-          <div
-            style={{ color: "#ffeaa7", marginTop: "1rem", fontStyle: "italic" }}
-          >
-            Nenhum plano cadastrado ainda. Clique no botão{" "}
-            <strong>"Criar Novo Plano"</strong> para começar a organizar sua
-            vida financeira!
-          </div>
-        ) : (
-          planos.map((plano) => (
-            <div
-              key={plano.id}
-              className="plano-card"
-              style={{
-                border: plano.principal
-                  ? "2px solid #ffeaa7"
-                  : "1px solid white",
-                margin: "10px",
-                padding: "16px",
-                borderRadius: "12px",
-                background: "#25263a",
-              }}
-            >
-              {planoEmEdicaoId === plano.id ? (
-                // MODO EDIÇÃO DE PLANO EXISTENTE
-                <div>
-                  <input
-                    type="text"
-                    className="form-control mb-2"
-                    value={novoPlano.nome}
-                    onChange={(e) =>
-                      setNovoPlano({ ...novoPlano, nome: e.target.value })
-                    }
-                  />
-
-                  <div className="tabela">
-                    <div
-                      className="linha cabecalho"
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        fontWeight: "bold",
-                        marginBottom: "8px",
-                      }}
-                    >
-                      <div style={{ flex: 1 }}>Tipo</div>
-                      <div style={{ flex: 2, paddingLeft: "34px" }}>
-                        Descrição
-                      </div>
-                      <div style={{ flex: 1 }}>Valor</div>
-                    </div>
-
-                    {novoPlano.linhas.map((linha, index) => (
-                      <div
-                        key={index}
-                        className="linha"
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          marginBottom: "8px",
-                        }}
-                      >
-                        <select
-                          className="form-select form-select-sm"
-                          value={linha.tipo}
-                          onChange={(e) =>
-                            atualizarLinha(index, "tipo", e.target.value)
-                          }
-                          style={{ marginRight: "8px", flex: 1 }}
-                        >
-                          <option>Receita</option>
-                          <option>Despesa</option>
-                          <option>Meta</option>
-                        </select>
-
-                        <input
-                          type="text"
-                          className="form-control form-control-sm"
-                          placeholder="Descrição"
-                          required
-                          value={linha.descricao}
-                          onChange={(e) =>
-                            atualizarLinha(index, "descricao", e.target.value)
-                          }
-                          style={{ marginRight: "8px", flex: 2 }}
-                        />
-
-                        <input
-                          type="number"
-                          className="form-control form-control-sm"
-                          placeholder="Valor"
-                          required
-                          value={linha.valor}
-                          onChange={(e) =>
-                            atualizarLinha(index, "valor", e.target.value)
-                          }
-                          style={{ marginRight: "8px", flex: 1 }}
-                        />
-
-                        <button
-                          className="btn btn-danger btn-sm"
-                          onClick={() => removerLinha(index)}
-                        >
-                          X
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                  {/* Botões de ação */}
-                  <div className="acoes-planos mt-2">
-                    <button
-                      className="btn btn-outline-warning btn-sm me-2"
-                      onClick={adicionarLinha}
-                    >
-                      Adicionar Linha
-                    </button>
-                    <button
-                      className="btn btn-success btn-sm me-2"
-                      onClick={salvarPlano}
-                    >
-                      Salvar Plano
-                    </button>
-                    <button
-                      className="btn btn-secondary btn-sm"
-                      onClick={() => {
-                        setNovoPlano(null);
-                        setPlanoEmEdicaoId(null);
-                      }}
-                    >
-                      Cancelar
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                // MODO VISUALIZAÇÃO DO PLANO
-                <>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                    }}
-                  >
-                    <h3 style={{ color: "#ffeaa7" }}>{plano.nome}</h3>
-                    {plano.principal && (
-                      <small
-                        style={{
-                          fontSize: "0.75em",
-                          color: "#ffeaa7",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        PRINCIPAL ⭐
-                      </small>
-                    )}
-                    <div>
-                      {!plano.principal && (
-                        <button
-                          className="btn btn-outline-primary btn-sm me-2"
-                          onClick={() => definirComoPrincipal(plano.id)}
-                        >
-                          ⭐ Tornar Principal
-                        </button>
-                      )}
-                      <button
-                        className="btn btn-warning btn-sm me-2"
-                        onClick={() => editarPlano(plano)}
-                        title="Editar plano"
-                      >
-                        <i className="bi bi-pencil-fill"></i>
-                      </button>
-                      <button
-                        className="btn btn-danger btn-sm"
-                        onClick={() => setPlanoParaExcluir(plano)}
-                        title="Excluir plano"
-                      >
-                        <i className="bi bi-trash3-fill"></i>
-                      </button>
-                    </div>
-                  </div>
-
-                  {plano.linhas.map((linha, index) => {
-                    const shadowColor =
-                      linha.tipo === "Receita"
-                        ? "#1dc407"
-                        : linha.tipo === "Despesa"
-                          ? "#FF6347"
-                          : "#6A5ACD";
-
-                    return (
-                      <div
-                        key={index}
-                        style={{
-                          borderRadius: "8px",
-                          padding: "12px",
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                          background: "#303147",
-                          color: "#fff",
-                          marginTop: "8px",
-                          boxShadow: `0 4px 6px -1px ${shadowColor}55`,
-                        }}
-                      >
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "column",
-                            alignItems: "flex-start",
-                          }}
-                        >
-                          <div>
-                            <span>{linha.descricao}</span>
-                          </div>
-                          <small
-                            style={{
-                              fontSize: "0.8em",
-                              opacity: 0.8,
-                              fontWeight: "bold",
-                              color: shadowColor,
-                            }}
-                          >
-                            {linha.tipo}
-                          </small>
-                        </div>
-                        <span>R$ {Number(linha.valor).toFixed(2)}</span>
-                      </div>
-                    );
-                  })}
-                </>
-              )}
-            </div>
-          ))
-        )}
+    {/* NOTIFICAÇÃO */}
+    {notificacao && (
+      <div
+        style={{
+          position: 'fixed',
+          top: '20px',
+          right: '20px',
+          padding: '14px 18px',
+          borderRadius: '10px',
+          backgroundColor:
+            notificacao.status === 'sucesso'
+              ? '#198754'
+              : '#dc3545',
+          color: '#fff',
+          boxShadow: '0 8px 25px rgba(0,0,0,0.35)',
+          zIndex: 9999,
+          fontSize: '0.85rem',
+          fontWeight: '600'
+        }}
+      >
+        {notificacao.mensagem}
       </div>
+    )}
 
-      {/* FORMULÁRIO DO NOVO PLANO */}
-      {novoPlano && planoEmEdicaoId === "novo" && (
-        <div
-          className="plano-card"
-          style={{
-            border: "1px solid white",
-            margin: "10px",
-            padding: "16px",
-            borderRadius: "12px",
-            background: "#25263a",
-          }}
-        >
-          <input
-            type="text"
-            className="form-control mb-2"
-            value={novoPlano.nome}
-            onChange={(e) =>
-              setNovoPlano({ ...novoPlano, nome: e.target.value })
-            }
-          />
+    {/* CABEÇALHO */}
+    <h2>Meus Planos Salariais</h2>
 
-          <div className="tabela">
-            <div
-              className="linha cabecalho"
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                fontWeight: "bold",
-                marginBottom: "8px",
-              }}
-            >
-              <div style={{ flex: 1 }}>Tipo</div>
-              <div style={{ flex: 2, paddingLeft: "34px" }}>Descrição</div>
-              <div style={{ flex: 1 }}>Valor</div>
-            </div>
+    <p>
+      Acompanhe seus ganhos, gastos e metas mês a mês.
+    </p>
 
-            {novoPlano.linhas.map((linha, index) => (
-              <div
-                key={index}
-                className="linha"
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  marginBottom: "8px",
-                }}
-              >
-                <select
-                  className="form-select form-select-sm"
-                  value={linha.tipo}
-                  onChange={(e) =>
-                    atualizarLinha(index, "tipo", e.target.value)
-                  }
-                  style={{ marginRight: "8px", flex: 1 }}
-                >
-                  <option>Receita</option>
-                  <option>Despesa</option>
-                  <option>Meta</option>
-                </select>
+
+    {/* LISTA DE PLANOS */}
+    <div className="lista-planos">
+
+      {planos.length === 0 ? (
+
+        <div className="planos-vazio">
+          Nenhum plano cadastrado ainda. Clique em
+          <strong style={{ color: '#ffc107', marginLeft: '4px' }}>
+            "Criar Novo Plano"
+          </strong>
+          para começar a organizar sua vida financeira.
+        </div>
+
+      ) : (
+
+        planos.map(plano => (
+
+          <div
+            key={plano.id}
+            className={`plano-card plano-criacao ${plano.principal ? 'plano-principal' : ''}`}
+          >
+
+            {/* =================================================
+                MODO EDIÇÃO
+               ================================================= */}
+
+            {planoEmEdicaoId === plano.id ? (
+
+              <div className="plano-formulario">
+
+                <div className="plano-formulario-titulo">
+                  <i className="bi bi-pencil-square me-2"></i>
+                  Editar plano
+                </div>
 
                 <input
                   type="text"
-                  placeholder="Descrição"
-                  required
-                  className="form-control form-control-sm"
-                  value={linha.descricao}
-                  onChange={(e) =>
-                    atualizarLinha(index, "descricao", e.target.value)
+                  className="plano-nome-input"
+                  value={novoPlano.nome}
+                  onChange={e =>
+                    setNovoPlano({
+                      ...novoPlano,
+                      nome: e.target.value
+                    })
                   }
-                  style={{ marginRight: "8px", flex: 2 }}
                 />
 
-                <input
-                  type="number"
-                  className="form-control form-control-sm"
-                  placeholder="Valor"
-                  required
-                  value={linha.valor}
-                  onChange={(e) =>
-                    atualizarLinha(index, "valor", e.target.value)
-                  }
-                  style={{ marginRight: "8px", flex: 1 }}
-                />
 
-                <button
-                  className="btn btn-danger btn-sm"
-                  onClick={() => removerLinha(index)}
-                >
-                  X
-                </button>
-              </div>
-            ))}
-          </div>
+                <div className="plano-tabela-header">
+                  <div>Tipo</div>
+                  <div>Descrição</div>
+                  <div>Valor</div>
+                  <div></div>
+                </div>
 
-          {/* Botões de ação abaixo da lista de linhas */}
-          <div className="acoes-planos mt-2">
-            <button
-              className="btn btn-outline-warning btn-sm me-2"
-              onClick={adicionarLinha}
-            >
-              Adicionar Linha
-            </button>
-            <button
-              className="btn btn-success btn-sm me-2"
-              onClick={salvarPlano}
-            >
-              Salvar Plano
-            </button>
-            <button
-              className="btn btn-secondary btn-sm"
-              onClick={() => {
-                setNovoPlano(null);
-                setPlanoEmEdicaoId(null);
-              }}
-            >
-              Cancelar
-            </button>
-          </div>
-        </div>
-      )}
 
-      {/* Modal de confirmação para exclusão de plano */}
-      {planoParaExcluir && (
-        <div
-          className="modal fade show"
-          style={{
-            display: "block",
-            backgroundColor: "rgba(0, 0, 0, 0.7)",
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100vw",
-            height: "100vh",
-            zIndex: 2000,
-          }}
-        >
-          <div
-            className="modal-dialog modal-dialog-centered"
-            style={{ maxWidth: "500px", margin: "auto" }}
-          >
-            <div
-              className="modal-content"
-              style={{
-                backgroundColor: "#1e1e2f",
-                borderRadius: "12px",
-                color: "#fff",
-                border: "1px solid #ffc107",
-              }}
-            >
-              <div className="modal-header border-0">
-                <h5 className="modal-title text-warning fw-bold">
-                  Confirmar Exclusão
-                </h5>
-                <button
-                  type="button"
-                  className="btn-close btn-close-white"
-                  aria-label="Close"
-                  onClick={() => setPlanoParaExcluir(null)}
-                ></button>
-              </div>
-              <div className="modal-body">
-                <p style={{ fontSize: "1rem", lineHeight: "1.6" }}>
-                  Você tem certeza de que deseja excluir o seu plano
-                  <strong
-                    className="text-warning"
-                    style={{ marginLeft: "6px" }}
+                {novoPlano.linhas.map((linha, index) => (
+
+                  <div
+                    key={index}
+                    className="plano-form-linha"
                   >
-                    {planoParaExcluir.nome}
-                  </strong>
-                  ?
-                </p>
+
+                    <select
+                      value={linha.tipo}
+                      onChange={e =>
+                        atualizarLinha(
+                          index,
+                          'tipo',
+                          e.target.value
+                        )
+                      }
+                    >
+                      <option>Receita</option>
+                      <option>Despesa</option>
+                      <option>Meta</option>
+                    </select>
+
+
+                    <input
+                      type="text"
+                      placeholder="Descrição"
+                      value={linha.descricao}
+                      onChange={e =>
+                        atualizarLinha(
+                          index,
+                          'descricao',
+                          e.target.value
+                        )
+                      }
+                    />
+
+
+                    <input
+                      type="number"
+                      placeholder="Valor"
+                      value={linha.valor}
+                      onChange={e =>
+                        atualizarLinha(
+                          index,
+                          'valor',
+                          e.target.value
+                        )
+                      }
+                    />
+
+
+                    <button
+                      className="btn btn-danger btn-remover-linha"
+                      onClick={() => removerLinha(index)}
+                      title="Remover linha"
+                    >
+                      <i className="bi bi-trash3"></i>
+                    </button>
+
+                  </div>
+
+                ))}
+
+
+                <div className="plano-form-acoes">
+
+                  <button
+                    className="btn btn-outline-warning"
+                    onClick={adicionarLinha}
+                  >
+                    <i className="bi bi-plus-lg me-1"></i>
+                    Adicionar linha
+                  </button>
+
+
+                  <button
+                    className="btn btn-success"
+                    onClick={salvarPlano}
+                  >
+                    <i className="bi bi-check-lg me-1"></i>
+                    Salvar alterações
+                  </button>
+
+
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => {
+                      setNovoPlano(null);
+                      setPlanoEmEdicaoId(null);
+                    }}
+                  >
+                    Cancelar
+                  </button>
+
+                </div>
+
               </div>
-              <div className="modal-footer border-0 d-flex justify-content-end">
-                <button
-                  className="btn btn-danger"
-                  onClick={() => {
-                    excluirPlano(planoParaExcluir.id);
-                    setPlanoParaExcluir(null);
-                  }}
-                >
-                  Excluir
-                </button>
-                <button
-                  className="btn btn-secondary me-2"
-                  onClick={() => setPlanoParaExcluir(null)}
-                >
-                  Cancelar
-                </button>
-              </div>
-            </div>
+
+            ) : (
+
+              /* =================================================
+                 MODO VISUALIZAÇÃO
+                 ================================================= */
+
+              <>
+
+                {/* CABEÇALHO DO PLANO */}
+
+                <div className="plano-header">
+
+                  <div className="plano-info">
+
+                    <h3>
+                      {plano.nome}
+                    </h3>
+
+                    {plano.principal && (
+                      <span className="plano-principal-badge">
+                        <i className="bi bi-star-fill"></i>
+                        PRINCIPAL
+                      </span>
+                    )}
+
+                  </div>
+
+
+                  <div className="plano-acoes">
+
+                    {!plano.principal && (
+
+                      <button
+                        className="btn btn-outline-warning btn-principal"
+                        onClick={() =>
+                          definirComoPrincipal(plano.id)
+                        }
+                        title="Tornar plano principal"
+                      >
+                        <i className="bi bi-star me-1"></i>
+                        Tornar principal
+                      </button>
+
+                    )}
+
+
+                    <button
+                      className="btn btn-warning"
+                      onClick={() => editarPlano(plano)}
+                      title="Editar plano"
+                    >
+                      <i className="bi bi-pencil-fill"></i>
+                    </button>
+
+
+                    <button
+                      className="btn btn-danger"
+                      onClick={() =>
+                        setPlanoParaExcluir(plano)
+                      }
+                      title="Excluir plano"
+                    >
+                      <i className="bi bi-trash3-fill"></i>
+                    </button>
+
+                  </div>
+
+                </div>
+
+
+                {/* LINHAS DO PLANO */}
+
+                {plano.linhas.map((linha, index) => {
+
+                  const shadowColor =
+                    linha.tipo === 'Receita'
+                      ? '#1dc407'
+                      : linha.tipo === 'Despesa'
+                        ? '#FF6347'
+                        : '#6A5ACD';
+
+                  return (
+
+                    <div
+                      key={index}
+                      className="plano-linha"
+                      style={{
+                        boxShadow:
+                          `0 4px 10px ${shadowColor}18`
+                      }}
+                    >
+
+                      <div className="plano-linha-info">
+
+                        <span className="plano-linha-descricao">
+                          {linha.descricao}
+                        </span>
+
+                        <span
+                          className="plano-linha-tipo"
+                          style={{
+                            color: shadowColor
+                          }}
+                        >
+                          {linha.tipo}
+                        </span>
+
+                      </div>
+
+
+                      <span className="plano-linha-valor">
+                        R$ {Number(linha.valor).toFixed(2)}
+                      </span>
+
+                    </div>
+
+                  );
+
+                })}
+
+              </>
+
+            )}
+
           </div>
-        </div>
+
+        ))
+
       )}
 
-      <button className="btn btn-warning mt-3" onClick={iniciarNovoPlano}>
-        Criar Novo Plano
-      </button>
     </div>
-  );
+
+
+    {/* =========================================================
+        FORMULÁRIO NOVO PLANO
+       ========================================================= */}
+
+    {novoPlano && planoEmEdicaoId === 'novo' && (
+
+      <div className="plano-formulario">
+
+        <div className="plano-formulario-titulo">
+          <i className="bi bi-plus-circle me-2"></i>
+          Criar novo plano
+        </div>
+
+
+        <input
+          type="text"
+          className="plano-nome-input"
+          placeholder="Nome do plano"
+          value={novoPlano.nome}
+          onChange={e =>
+            setNovoPlano({
+              ...novoPlano,
+              nome: e.target.value
+            })
+          }
+        />
+
+
+        <div className="plano-tabela-header">
+          <div>Tipo</div>
+          <div>Descrição</div>
+          <div>Valor</div>
+          <div></div>
+        </div>
+
+
+        {novoPlano.linhas.map((linha, index) => (
+
+          <div
+            key={index}
+            className="plano-form-linha"
+          >
+
+            <select
+              value={linha.tipo}
+              onChange={e =>
+                atualizarLinha(
+                  index,
+                  'tipo',
+                  e.target.value
+                )
+              }
+            >
+              <option>Receita</option>
+              <option>Despesa</option>
+              <option>Meta</option>
+            </select>
+
+
+            <input
+              type="text"
+              placeholder="Descrição"
+              value={linha.descricao}
+              onChange={e =>
+                atualizarLinha(
+                  index,
+                  'descricao',
+                  e.target.value
+                )
+              }
+            />
+
+
+            <input
+              type="number"
+              placeholder="Valor"
+              value={linha.valor}
+              onChange={e =>
+                atualizarLinha(
+                  index,
+                  'valor',
+                  e.target.value
+                )
+              }
+            />
+
+
+            <button
+              className="btn btn-danger btn-remover-linha"
+              onClick={() => removerLinha(index)}
+              title="Remover linha"
+            >
+              <i className="bi bi-trash3"></i>
+            </button>
+
+          </div>
+
+        ))}
+
+
+        <div className="plano-form-acoes">
+
+          <button
+            className="btn btn-outline-warning"
+            onClick={adicionarLinha}
+          >
+            <i className="bi bi-plus-lg me-1"></i>
+            Adicionar linha
+          </button>
+
+
+          <button
+            className="btn btn-success"
+            onClick={salvarPlano}
+          >
+            <i className="bi bi-check-lg me-1"></i>
+            Salvar plano
+          </button>
+
+
+          <button
+            className="btn btn-secondary"
+            onClick={() => {
+              setNovoPlano(null);
+              setPlanoEmEdicaoId(null);
+            }}
+          >
+            Cancelar
+          </button>
+
+        </div>
+
+      </div>
+
+    )}
+
+
+    {/* =========================================================
+        MODAL DE EXCLUSÃO
+       ========================================================= */}
+
+    {planoParaExcluir && (
+
+      <div
+        className="modal fade show"
+        style={{
+          display: 'block',
+          backgroundColor: 'rgba(0, 0, 0, 0.75)',
+          position: 'fixed',
+          inset: 0,
+          zIndex: 2000
+        }}
+      >
+
+        <div
+          className="modal-dialog modal-dialog-centered"
+          style={{ maxWidth: '460px' }}
+        >
+
+          <div
+            className="modal-content"
+            style={{
+              backgroundColor: '#202235',
+              borderRadius: '14px',
+              color: '#fff',
+              border: '1px solid #3b3e55'
+            }}
+          >
+
+            <div className="modal-header border-0">
+
+              <h5 className="modal-title text-warning fw-bold">
+                <i className="bi bi-exclamation-triangle me-2"></i>
+                Confirmar exclusão
+              </h5>
+
+              <button
+                type="button"
+                className="btn-close btn-close-white"
+                onClick={() =>
+                  setPlanoParaExcluir(null)
+                }
+              ></button>
+
+            </div>
+
+
+            <div className="modal-body">
+
+              <p>
+                Você tem certeza de que deseja excluir o plano
+                <strong
+                  className="text-warning"
+                  style={{ marginLeft: '6px' }}
+                >
+                  {planoParaExcluir.nome}
+                </strong>
+                ?
+              </p>
+
+            </div>
+
+
+            <div className="modal-footer border-0">
+
+              <button
+                className="btn btn-secondary"
+                onClick={() =>
+                  setPlanoParaExcluir(null)
+                }
+              >
+                Cancelar
+              </button>
+
+              <button
+                className="btn btn-danger"
+                onClick={() => {
+                  excluirPlano(planoParaExcluir.id);
+                  setPlanoParaExcluir(null);
+                }}
+              >
+                <i className="bi bi-trash3 me-1"></i>
+                Excluir plano
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    )}
+
+
+    {/* CRIAR NOVO PLANO */}
+
+    {!novoPlano && (
+
+      <button
+        className="btn btn-criar-plano"
+        onClick={iniciarNovoPlano}
+      >
+        <i className="bi bi-plus-lg me-1"></i>
+        Criar novo plano
+      </button>
+
+    )}
+
+  </div>
+);
 }

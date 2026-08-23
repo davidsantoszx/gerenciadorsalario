@@ -27,7 +27,14 @@ footer {
 }
 
 
-
+#painel-planos {
+  width: calc(100% - 40px);
+  max-width: 1350px;
+  margin: 2rem auto 0;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
 
 
 
@@ -167,4 +174,224 @@ footer {
 
 .notificacao.info {
   background-color: #17a2b8;
+}
+
+
+/* =========================================================
+   ANIMAÇÕES DO PAINEL
+   ========================================================= */
+
+/* Plano criado */
+.plano-card {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* Não aplica o hover ao formulário de criação */
+.plano-card:not(.plano-criacao):hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+
+/* Linhas dentro do plano */
+.plano-card > div[style*="boxShadow"] {
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.plano-card > div[style*="boxShadow"]:hover {
+  transform: translateX(4px);
+  background-color: #35364d !important;
+}
+
+
+/* =========================================================
+   FORMULÁRIO DE CRIAÇÃO
+   ========================================================= */
+
+.plano-criacao {
+  animation: aparecerPlano 0.35s ease-out;
+  transform-origin: top center;
+}
+
+@keyframes aparecerPlano {
+  from {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* =========================================================
+   GRÁFICO
+   ========================================================= */
+
+.grafico-container {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  
+  animation: aparecerGrafico 0.5s ease-out;
+}
+
+.grafico-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+@keyframes aparecerGrafico {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* =========================================================
+   BOTÕES
+   ========================================================= */
+
+#painel-planos button {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+#painel-planos button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+#painel-planos button:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+#painel-planos input,
+#painel-planos select {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+#painel-planos input:focus,
+#painel-planos select:focus {
+  outline: none;
+  border-color: #ffc107;
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.12);
+}
+
+
+/* =========================================================
+   NOTIFICAÇÃO
+   ========================================================= */
+
+.notificacao {
+  animation: aparecerNotificacao 0.3s ease-out;
+}
+
+@keyframes aparecerNotificacao {
+  from {
+    opacity: 0;
+    transform: translateX(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* =========================
+   GRÁFICO
+========================= */
+
+.grafico-container {
+  width: min(100%, 700px);
+  margin: 0 auto;
+  padding: 28px;
+  background: #1e1e2f;
+  border: 1px solid #303147;
+  border-radius: 16px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.grafico-container:hover {
+  transform: translateY(-5px);
+
+  border-color: rgba(255, 193, 7, 0.45);
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(255, 193, 7, 0.08);
+}
+
+.grafico-titulo {
+  color: #f1f3f5;
+  text-align: center;
+  margin-bottom: 20px;
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.grafico-container:hover .grafico-titulo {
+  color: #ffc107;
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   HOVER DOS PLANOS JÁ CRIADOS
+========================================= */
+
+.plano-card {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+/* Plano criado - efeito ao passar o mouse */
+.plano-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 14px 35px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(255, 193, 7, 0.08);
+}
+
+/* Plano principal - destaque maior */
+.plano-principal:hover {
+  transform: translateY(-6px);
+
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.4),
+    0 0 22px rgba(255, 234, 167, 0.15);
 }
