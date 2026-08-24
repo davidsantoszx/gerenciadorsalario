@@ -14,18 +14,18 @@ Este é um projeto simples e funcional de **gerenciador de salário**, desenvolv
 
 ### 🏠 Visão geral:
 - Página inicial não logada  
-  ![Página de visão 1](images/paginavisao.JPG)  
-  ![Página de visão 2](images/paginavisao2.JPG)
+  ![Página de visão 1](images/paginavisao.png)  
+  ![Página de visão 2](images/paginavisao2.png)
 
 ### ✅ Painel do usuário logado:
 - Página principal após login  
-  ![Página logado](images/paginalogado.JPG)
+  ![Página logado](images/PAGINALOGADO.png)
 - Gráfico do plano principal  
-  ![Gráfico](images/graficologado.JPG)
+  ![Gráfico](images/graficologado.png)
 - Painel de planos salariais  
-  ![Painel de Planos](images/PAINELPLANOS.JPG)
+  ![Painel de Planos](images/PAINELPLANOS.png)
 - Painel de criação de planos  
-  ![Criação de Planos](images/PAINELDECRIACAO.JPG)
+  ![Criação de Planos](images/PAINELDECRIACAO.png)
 
 ---
 
